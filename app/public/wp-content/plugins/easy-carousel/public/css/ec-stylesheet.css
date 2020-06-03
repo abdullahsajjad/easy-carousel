@@ -1,0 +1,109 @@
+/********Owl Slider Home Page*******/
+.owl-carousel.home-owl-slider .captions-drali-st {
+    position: absolute;
+    right: 65px;
+    left: 65px;
+    bottom: 0;
+    background: rgba(0, 0, 0, .49) none repeat scroll 0 0;
+    padding: 10px 10px 40px 10px;
+}
+
+.owl-carousel.home-owl-slider img {
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: top center;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+    -webkit-transition: .5s ease-in-out;
+    transition: .5s ease-in-out;
+    display: inline-block;
+    position: unset;
+}
+
+.owl-carousel.home-owl-slider a.item {
+    position: relative;
+    height: 400px;
+    display: block;
+    overflow: hidden;
+}
+
+.owl-carousel.home-owl-slider a.item:hover img {
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+}
+
+.owl-carousel.home-owl-slider .captions-drali-st span.slider-button {
+    padding: 4px 10px;
+    margin: 5px 0;
+    font-size: 13px;
+    color: #fff;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    -webkit-transition: .3s ease-in;
+    transition: .3s ease-in;
+    display: inline-block;
+}
+
+.owl-carousel.home-owl-slider .captions-drali-st h2 {
+    padding: 0;
+    margin: 5px 0;
+}
+
+.owl-carousel.home-owl-slider .owl-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.owl-carousel.home-owl-slider button.owl-dot.active {
+    background: #fff;
+}
+
+.owl-carousel.home-owl-slider button.owl-dot {
+    box-shadow: inset 0 0 0 2px #fff;
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    background: transparent;
+    border-radius: 100%;
+    margin: 5px;
+}
+
+.owl-carousel.home-owl-slider .owl-nav button {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    background-image: url(/wp-content/plugins/easy-carousel/public/images/arrow-left.png);
+    top: 50%;
+    width: 35px;
+    height: 50px;
+    padding: 0;
+    background-color: rgba(0, 0, 0, .7);
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.owl-carousel.home-owl-slider .owl-nav button.owl-next {
+    background-image: url(/wp-content/plugins/easy-carousel/public/images/arrow-right.png);
+    left: inherit;
+    right: 0;
+}
+
+.owl-carousel.home-owl-slider .owl-nav button:hover {
+    height: 110px;
+    -webkit-transition: .3s ease-in;
+    transition: .3s ease-in;
+    -webkit-transform: translateY(-28%);
+    transform: translateY(-28%);
+}
+
+.owl-carousel.home-owl-slider {
+    text-align: center;
+}
