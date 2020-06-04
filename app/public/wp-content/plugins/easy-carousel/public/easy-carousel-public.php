@@ -92,7 +92,7 @@ function ec_create_shortcode()
         'post_type' => 'easy_carousel'
     ];
     $query = new WP_Query($args);
-    $html = '<div class="owl-carousel home-owl-slider desktop-v-10">';
+    $html = '<div class="owl-carousel easy-carousel home-owl-slider desktop-v-10">';
     while ($query->have_posts()) {
         $query->the_post();
         $linkto = get_post_meta(get_the_ID(), 'linkto_slide', true) ? 1 : $linkto = 'javascript:void(0)';

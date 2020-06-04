@@ -1,5 +1,5 @@
 /********Owl Slider Home Page*******/
-.owl-carousel.home-owl-slider .captions-drali-st {
+.easy-carousel.owl-carousel.home-owl-slider .captions-drali-st {
     position: absolute;
     right: 65px;
     left: 65px;
@@ -8,7 +8,7 @@
     padding: 10px 10px 40px 10px;
 }
 
-.owl-carousel.home-owl-slider img {
+.easy-carousel.owl-carousel.home-owl-slider img {
     -o-object-fit: cover;
     object-fit: cover;
     -o-object-position: top center;
@@ -21,20 +21,20 @@
     position: unset;
 }
 
-.owl-carousel.home-owl-slider a.item {
+.easy-carousel.owl-carousel.home-owl-slider a.item {
     position: relative;
     height: 400px;
     display: block;
     overflow: hidden;
 }
 
-.owl-carousel.home-owl-slider a.item:hover img {
+.easy-carousel.owl-carousel.home-owl-slider a.item:hover img {
     transform: scale(1.2);
     -ms-transform: scale(1.2);
     -webkit-transform: scale(1.2);
 }
 
-.owl-carousel.home-owl-slider .captions-drali-st span.slider-button {
+.easy-carousel.owl-carousel.home-owl-slider .captions-drali-st span.slider-button {
     padding: 4px 10px;
     margin: 5px 0;
     font-size: 13px;
@@ -47,23 +47,23 @@
     display: inline-block;
 }
 
-.owl-carousel.home-owl-slider .captions-drali-st h2 {
+.easy-carousel.owl-carousel.home-owl-slider .captions-drali-st h2 {
     padding: 0;
     margin: 5px 0;
 }
 
-.owl-carousel.home-owl-slider .owl-dots {
+.easy-carousel.owl-carousel.home-owl-slider .owl-dots {
     position: absolute;
     bottom: 10px;
     left: 0;
     right: 0;
 }
 
-.owl-carousel.home-owl-slider button.owl-dot.active {
+.easy-carousel.owl-carousel.home-owl-slider button.owl-dot.active {
     background: #fff;
 }
 
-.owl-carousel.home-owl-slider button.owl-dot {
+.easy-carousel.owl-carousel.home-owl-slider button.owl-dot {
     box-shadow: inset 0 0 0 2px #fff;
     padding: 0;
     height: 15px;
@@ -73,7 +73,7 @@
     margin: 5px;
 }
 
-.owl-carousel.home-owl-slider .owl-nav button {
+.easy-carousel.owl-carousel.home-owl-slider .owl-nav button {
     position: absolute;
     left: 0;
     z-index: 1;
@@ -90,13 +90,13 @@
     transform: translateY(-50%);
 }
 
-.owl-carousel.home-owl-slider .owl-nav button.owl-next {
+.easy-carousel.owl-carousel.home-owl-slider .owl-nav button.owl-next {
     background-image: url(/wp-content/plugins/easy-carousel/public/images/arrow-right.png);
     left: inherit;
     right: 0;
 }
 
-.owl-carousel.home-owl-slider .owl-nav button:hover {
+.easy-carousel.owl-carousel.home-owl-slider .owl-nav button:hover {
     height: 110px;
     -webkit-transition: .3s ease-in;
     transition: .3s ease-in;
@@ -104,6 +104,9 @@
     transform: translateY(-28%);
 }
 
-.owl-carousel.home-owl-slider {
+.easy-carousel.owl-carousel.home-owl-slider {
     text-align: center;
+}
+.easy-carousel .owl-dots{
+    display:block !important;
 }
