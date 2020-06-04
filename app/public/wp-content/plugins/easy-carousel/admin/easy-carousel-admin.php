@@ -82,8 +82,6 @@ function ec_register_carousel_post_type()
 
 add_action('init', 'ec_register_carousel_post_type');
 
-//var_dump(rtrim(plugin_dir_path( __FILE__ ),'/' ). '\includes\multi-post-thumbnails.php');
-
 require_once plugin_dir_path(__FILE__) . 'multi-post-thumbnails.php';
 
 function add_mobile_image_metabox()
@@ -148,3 +146,57 @@ function linkto_callback($post)
     </div>
     <?php
 }
+
+/**
+ * Remove all other metaboxes from CPT
+ * @param #post_type,$post
+ * */
+
+function my_remove_meta_boxes2($post_type, $post){
+
+    /** Check the post type is not easy_crousel */
+    if($post_type!='easy_carousel')
+        return;
+
+    global $wp_meta_boxes;
+
+    /** Create an array of meta boxes exceptions, ones that should not be removed (remove if you don't want/need) */
+    $exceptions = array(
+        'easy_carousel-mobile-feature-image',
+        'linkto',
+        'submitdiv'
+    );
+
+    /** Loop through each page key of the '$wp_meta_boxes' global... */
+    if(!empty($wp_meta_boxes)) : foreach($wp_meta_boxes as $page => $page_boxes) :
+
+        /** Loop through each contect... */
+        if(!empty($page_boxes)) : foreach($page_boxes as $context => $box_context) :
+
+            /** Loop through each type of meta box... */
+            if(!empty($box_context)) : foreach($box_context as $box_type) :
+
+                /** Loop through each individual box... */
+                if(!empty($box_type)) : foreach($box_type as $id => $box) :
+
+                    /** Check to see if the meta box should be removed... */
+                    if(!in_array($id, $exceptions)) :
+
+                        /** Remove the meta box */
+                        remove_meta_box($id, $page, $context);
+                    endif;
+
+                endforeach;
+                endif;
+
+            endforeach;
+            endif;
+
+        endforeach;
+        endif;
+
+    endforeach;
+    endif;
+}
+
+add_action('add_meta_boxes', 'my_remove_meta_boxes2', 99, 2);
