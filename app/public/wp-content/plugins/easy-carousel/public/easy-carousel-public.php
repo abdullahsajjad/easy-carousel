@@ -75,21 +75,47 @@ add_action('wp_enqueue_scripts', 'ec_public_scripts');
  * @return string
  */
 
-
 function ec_create_shortcode()
 {
+    $mobile=false;
+    if(!class_exists('Mobile_Detect'))
+    {
+        require_once plugin_dir_path(__FILE__).'includes/Mobile_Detect.php';
+        $detect= new Mobile_Detect();
+        if ( $detect->isMobile() ) {
+            $mobile=true;
+        }
+    }
+
     $args = [
         'posts_per_page' => -1,
         'post_type' => 'easy_carousel'
     ];
     $query = new WP_Query($args);
-    $html .= '<div class="owl-carousel home-owl-slider desktop-v-10">';
+    $html = '<div class="owl-carousel home-owl-slider desktop-v-10">';
     while ($query->have_posts()) {
         $query->the_post();
-        get_post_meta(get_the_ID(), 'linkto_slide', true) ? $linkto = get_post_meta(get_the_ID(), 'linkto_slide', true) : $linkto = 'javascript:void(0)';
+        $linkto = get_post_meta(get_the_ID(), 'linkto_slide', true) ? 1 : $linkto = 'javascript:void(0)';
         $html .= '
-            <a class="item" href="' . $linkto . '">
-            ' . get_the_post_thumbnail();
+            <a class="item" href="' . $linkto . '">';
+        if($mobile)
+        {
+            if (class_exists('MultiPostThumbnails')) :
+
+                $mobile_image=MultiPostThumbnails::get_the_post_thumbnail(get_post_type(), 'mobile-feature-image');
+                if($mobile_image)
+                {
+                    $html .= $mobile_image;
+                }
+                else{
+                    $html .= get_the_post_thumbnail();
+                }
+
+            endif;
+        }
+        else{
+            $html.=get_the_post_thumbnail();
+        }
         if (get_the_content()) {
             $html .= '<div class="captions-drali-st"><h2>' . get_the_content() . '</h2>
 			<span class="slider-button">Learn More</span></div>';
