@@ -1,22 +1,24 @@
 <?php
+
 /**
+ * The plugin bootstrap file
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              allmarketingsolutions.co.uk
+ * @link              https://github.com/abdullahsajjad
  * @since             1.0.0
  * @package           Easy_Carousel
  *
  * @wordpress-plugin
  * Plugin Name:       Easy Carousel
- * Plugin URI:        #
- * Description:       Simple Owl Carousel.
+ * Plugin URI:        https://github.com/abdullahsajjad/easy-carousel
+ * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
- * Author:            AMS
- * Author URI:        allmarketingsolutions.co.uk
+ * Author:            Abdullah Sajjad
+ * Author URI:        https://github.com/abdullahsajjad
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       easy-carousel
@@ -24,59 +26,57 @@
  */
 
 // If this file is called directly, abort.
-if (!defined('WPINC')) {
-    die;
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
 /**
  * Currently plugin version.
+ * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('EASY_CAROUSEL_VERSION', '1.0.0');
-
+define( 'EASY_CAROUSEL_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
+ * This action is documented in includes/class-easy-carousel-activator.php
  */
-function activate_easy_carousel()
-{
+function activate_easy_carousel() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-easy-carousel-activator.php';
+	Easy_Carousel_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-easy-carousel-deactivator.php
  */
-function deactivate_easy_carousel()
-{
-    flush_rewrite_rules();
+function deactivate_easy_carousel() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-easy-carousel-deactivator.php';
+	Easy_Carousel_Deactivator::deactivate();
 }
 
-register_activation_hook(__FILE__, 'activate_easy_carousel');
-register_deactivation_hook(__FILE__, 'deactivate_easy_carousel');
+register_activation_hook( __FILE__, 'activate_easy_carousel' );
+register_deactivation_hook( __FILE__, 'deactivate_easy_carousel' );
 
 /**
- * requiring assets
+ * The core plugin class that is used to define internationalization,
+ * admin-specific hooks, and public-facing site hooks.
  */
-
-require_once plugin_dir_path(__FILE__) . 'admin/easy-carousel-admin.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-easy-carousel.php';
 
 /**
- * adding seprate metabox for mobile image
+ * Begins execution of the plugin.
+ *
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ *
+ * @since    1.0.0
  */
-add_mobile_image_metabox();
+function run_easy_carousel() {
 
-/**
- * changing featured image metabox title
- */
+	$plugin = new Easy_Carousel();
+	$plugin->run();
 
-function ec_change_featured_image_metabox_title()
-{
-    remove_meta_box('postimagediv', 'easy_carousel', 'side');
-    add_meta_box('postimagediv', __('Desktop Feature Image', 'ec'), 'post_thumbnail_meta_box', 'easy_carousel', 'side');
 }
-
-add_action('do_meta_boxes', 'ec_change_featured_image_metabox_title');
-
-
-require_once plugin_dir_path(__FILE__) . 'public/easy-carousel-public.php';
-
-
+run_easy_carousel();
